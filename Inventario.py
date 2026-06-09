@@ -21,3 +21,4 @@ class Inventario:
         for i, producto in enumerate(self.productos, start=1):
             unidad = "metros" if producto.unidad_medida == "metro" else "unidades"
             print(f"{i}. {producto.nombre} - Precio: {producto.precio} ({unidad})")
+

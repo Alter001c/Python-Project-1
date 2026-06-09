@@ -52,6 +52,12 @@ class AppMain:
                     factura.fecha = fd["fecha"]
                     factura.total = fd["total"]
                     self.gestor_facturas.facturas.append(factura)
+
+                    if self.gestor_facturas.facturas:
+                        max_num = max(f.numero for f in self.gestor_facturas.facturas)
+                        self.numero_factura = max_num + 1
+                    else:
+                        self.numero_factura = 1
         except FileNotFoundError:
             pass
 

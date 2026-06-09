@@ -18,6 +18,8 @@ class Inventario:
 
     def listProductos(self):
         print("\n--- INVENTARIO ---")
+        if not self.productos:
+            print("Inventario vacío.")
         for i, producto in enumerate(self.productos, start=1):
             unidad = "metros" if producto.unidad_medida == "metro" else "unidades"
             print(f"{i}. {producto.nombre} - Precio: {producto.precio} ({unidad})")

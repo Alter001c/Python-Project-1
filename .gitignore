@@ -1,0 +1,15 @@
+# Entorno virtual
+venv/
+__pycache__/
+
+# Datos locales
+*.json
+!ejemplo_*.json
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+*.log

@@ -7,7 +7,7 @@ const state = {
     nextInvoiceNumber: 1
 };
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 // Helpers
 async function fetchAPI(endpoint, options = {}) {

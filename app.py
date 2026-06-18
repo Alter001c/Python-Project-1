@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from Producto import Producto
 from Inventario import Inventario
@@ -8,7 +8,7 @@ from GestorFacturas import GestorFacturas
 import json
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
 
 # Inicializar datos
@@ -66,6 +66,19 @@ def guardar_facturas():
     with open("facturas.json", "w") as f:
         json.dump(data, f, default=str)
 
+# ===== NUEVO: Servir archivos estáticos =====
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/<path:filename>')
+def static_files(filename):
+    # Verificar si el archivo existe
+    if os.path.exists(filename):
+        return send_from_directory('.', filename)
+    return jsonify({'error': 'File not found'}), 404
+
+# ===== ENDPOINTS API =====
 @app.route('/api/products', methods=['GET'])
 def get_products():
     return jsonify([p.__dict__ for p in inventario.productos])
